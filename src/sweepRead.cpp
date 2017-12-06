@@ -42,6 +42,7 @@ namespace sweepRead
 		data->mtx.lock();
 		sweep::sweep device{data->ip_or_portname.c_str()};
 		device.set_motor_speed(5);
+		device.set_sample_rate(1000);
 		std::cout << "Motor Speed Setting: " << device.get_motor_speed() << "Hz" << std::endl;
 		std::cout << "Sample Rate Setting: " << device.get_sample_rate() << "Hz" << std::endl; 
 		std::cout << "Beginning data acquisition as soon as motor speed stabilizes..." << std::endl;
@@ -63,7 +64,7 @@ namespace sweepRead
 				  angle.push_back((double)sample.angle/1000);
 				  data_intensity.push_back(sample.signal_strength);
 
-				  std::cout << "angle " << (double)sample.angle/1000 << " distance " << sample.distance*10 << " strength " << sample.signal_strength << "\n";
+				  //std::cout << "angle " << (double)sample.angle/1000 << " distance " << sample.distance*10 << " strength " << sample.signal_strength << "\n";
 				}
 				std::cout << "\nSizes: lidar: " << distance.size() << "\tangle: " << angle.size();
 				cnt++;
